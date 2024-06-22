@@ -1,0 +1,31 @@
+<ng-container *ngIf="forecastService.forecastInfos$ | async as forecatsInfos">
+  <div class="well flex single-forecast" *ngFor="let forecatsInfo of forecatsInfos">
+    <div>
+      <h3>{{ forecatsInfo.place }}</h3>
+      <h4>Current conditions: {{ forecatsInfo.conditions }}</h4>
+      <h4>Temperatures today:</h4>
+      <p>
+        Current {{ forecatsInfo.currentTemp }} - Max {{ forecatsInfo.maxTemp }} - Min
+        {{ forecatsInfo.minTemp }}
+      </p>
+      <p>
+        <a class="card-link" (click)="goTo(forecatsInfo)"
+          >Show 5-day forecast for {{ forecatsInfo.place }}</a
+        >
+      </p>
+    </div>
+    <div>
+      <button
+        class="btn btn-sm close-button"
+        aria-label="Close"
+        (click)="removeForecastLocation(forecatsInfo)"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <img
+        *ngIf="forecatsInfo.conditions"
+        [src]="forecatsInfo.conditions | forecastImage : forecatsInfo.conditionApiIcon"
+      />
+    </div>
+  </div>
+</ng-container>

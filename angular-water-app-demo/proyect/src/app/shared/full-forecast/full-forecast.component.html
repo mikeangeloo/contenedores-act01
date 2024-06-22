@@ -1,0 +1,30 @@
+<ng-container *ngIf="forecastService.fiveDaysForecastInfos$ | async as forecastInfos">
+  <div class="container-fluid" *ngIf="forecastInfos">
+    <h4>Template for 5-day forecast page:</h4>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          5-day forecast for
+          {{ forecastInfos.length > 0 && forecastInfos[0].place ? forecastInfos[0].place : '' }}
+        </h3>
+      </div>
+      <ul class="list-group" *ngFor="let forecast of forecastInfos">
+        <!---->
+        <li class="list-group-item">
+          {{ forecast.date }}: {{ forecast.conditions }} - Min: {{ forecast.minTemp }} - Max:
+          {{ forecast.maxTemp }}
+
+          <img
+            *ngIf="forecast.conditions"
+            class="icon"
+            [src]="forecast.conditions | forecastImage : forecast.conditionApiIcon"
+          />
+        </li>
+      </ul>
+    </div>
+    <br />
+    <button class="btn btn-success" tabindex="0" id="mainPageBtn" (click)="returnHomePage()">
+      &lt; Back to main page
+    </button>
+  </div>
+</ng-container>

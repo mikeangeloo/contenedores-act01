@@ -1,0 +1,52 @@
+<div class="well">
+  <h2>Enter a zipcode:</h2>
+  <form [formGroup]="locationZipcodeFormGroup">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <input
+            class="form-control"
+            placeholder="Zipcode"
+            type="number"
+            id="addLocation"
+            aria-describedby="inputErrorStatus"
+            [ngClass]="{
+              'is-invalid': errorFeedback
+            }"
+            formControlName="zipCode"
+          />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <select
+            class="form-control"
+            aria-describedby="inputErrorStatus"
+            [ngClass]="{
+              'is-invalid': errorFeedback
+            }"
+            formControlName="location"
+          >
+            <option [value]="''">Select Country Code</option>
+            <option *ngFor="let countryCode of countryCodes" [value]="countryCode.code">
+              {{ countryCode.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12 form-group">
+        <ng-container *ngIf="errorFeedback">
+          <span id="inputErrorStatus" class="invalid-feedback" style="display: block">{{
+            errorFeedback
+          }}</span>
+        </ng-container>
+      </div>
+    </div>
+  </form>
+
+  <br />
+  <button class="btn btn-primary" id="addLocationBtn" (click)="emitEnteredZipCode()">
+    Add location
+  </button>
+</div>

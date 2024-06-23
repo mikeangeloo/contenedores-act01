@@ -5,7 +5,7 @@ FROM php:8.3.7-apache
 WORKDIR /var/www/html
 
 # Copiamos los ficheros de la carpeta src a la carpeta del contenedor que expone los aplicativos
-COPY ./proyect /var/www/html
+COPY ./project /var/www/html
 
 # Exponemos el puerto
 EXPOSE 9001

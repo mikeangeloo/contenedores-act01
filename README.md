@@ -11,3 +11,6 @@
 #### ruby-kings-landing:
 - Repositorio tomado de: https://github.com/codeadict/kings-landing
 
+#### udemy-course-blog:
+  - Repositorio tomado de: https://github.com/bahdcoder/udemy-course-blog
+

@@ -2,7 +2,7 @@ FROM node:latest as build
 
 WORKDIR /usr/proyects/water-app
 
-COPY ./proyect /usr/proyects/water-app
+COPY ./project /usr/projects/water-app
 
 RUN <<EOF
 apt-get update
@@ -27,10 +27,10 @@ EOF
 # Paso 2
 FROM nginx:latest
 
-COPY --from=build /usr/proyects/water-app/dist/water-app-demo /usr/share/nginx/html
+COPY --from=build /usr/projects/water-app/dist/water-app-demo /usr/share/nginx/html
 
 # Copy the nginx file to fix fallback issue on refreshing.
-COPY ./proyect/config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 9003

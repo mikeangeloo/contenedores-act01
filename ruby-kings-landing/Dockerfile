@@ -12,7 +12,7 @@ COPY ./proyect/Gemfile ./src/Gemfile.lock ./
 # RUN gem install bundler -v 2.0
 RUN bundle install
 
-COPY ./proyect .
+COPY ./project .
 
 RUN cp config.example.yml config.yml
 

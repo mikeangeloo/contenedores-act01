@@ -8,7 +8,7 @@ RUN bundle config --global frozen 1
 WORKDIR /usr/src/app
 
 # Copiamos los ficheros de la carpeta src a la carpeta del contenedor que expone los aplicativos
-COPY ./proyect/Gemfile ./src/Gemfile.lock ./
+COPY ./project/Gemfile ./project/Gemfile.lock ./
 # RUN gem install bundler -v 2.0
 RUN bundle install
 

@@ -1,12 +1,10 @@
 version: '3.8'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: mikeangeloo/laravel-blog-demo:v1
     container_name: laravel_app
     ports:
-      - "9005:80"
+      - "9004:80"
     networks:
       - laravel
     volumes:

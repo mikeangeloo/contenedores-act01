@@ -1,6 +1,6 @@
 FROM node:latest as build
 
-WORKDIR /usr/proyects/water-app
+WORKDIR /usr/projects/water-app
 
 COPY ./project /usr/projects/water-app
 

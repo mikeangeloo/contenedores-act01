@@ -11,10 +11,10 @@ RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
 # Movemos nuestro archivo de conf del vhost a la carpeta del contendor para sobreescribir
 COPY ./config/vhost.conf /etc/apache2/sites-available/000-default.conf
 
-# Establecer el directorio de trabajo
+# Establecemos el directorio de trabajo
 WORKDIR /var/www/html
 
-# Instalar extensiones de PHP necesarias para Laravel
+# Instalamos extensiones de PHP necesarias para Laravel
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -27,19 +27,19 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo pdo_mysql mbstring
 
-# Instalar Composer
+# Instalamos Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar el contenido del proyecto a la imagen
+# Copiamos el contenido del proyecto a la imagen
 COPY ./project /var/www/html
 
-# Establecer la variable de entorno para permitir superusuario en Composer
+# Establecemos la variable de entorno para permitir superusuario en Composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-# Establecer permisos
+# Establecemos permisos
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Exponer el puerto 80
+# Exponemos el puerto 80
 EXPOSE 80
 
 # Configuración de Apache

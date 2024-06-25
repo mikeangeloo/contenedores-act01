@@ -4,7 +4,7 @@ FROM php:8.3.7-apache
 # Establecemos el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiamos los ficheros de la carpeta src a la carpeta del contenedor que expone los aplicativos
+# Copiamos los ficheros de la carpeta project a la carpeta del contenedor que expone los aplicativos
 COPY ./project /var/www/html
 
 # Exponemos el puerto

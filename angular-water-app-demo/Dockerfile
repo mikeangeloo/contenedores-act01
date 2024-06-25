@@ -1,9 +1,14 @@
+######## Paso 1
+# Especificamos la imagen de node a utilizar
 FROM node:latest as build
 
+# Establecemos el directorio de trabajo
 WORKDIR /usr/projects/water-app
 
+# Copiamos los ficheros de la carpeta project a la carpeta del contenedor que expone los aplicativos
 COPY ./project /usr/projects/water-app
 
+# Ejecutamos los siguientecomandos para: actualizar, instalar nvm, instalar node, compilar proyecto
 RUN <<EOF
 apt-get update
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -24,13 +29,15 @@ npm run build
 EOF
 
 
-# Paso 2
+######## Paso 2
+# Especificamos la imagen de nginx a utilizar
 FROM nginx:latest
 
+# Copiamos los ficheros del build anterior a la carpeta publica html de nginx
 COPY --from=build /usr/projects/water-app/dist/water-app-demo /usr/share/nginx/html
 
-# Copy the nginx file to fix fallback issue on refreshing.
+# Copiamos el archivo nginx para que el proyecto este vigente
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
+# Exponemos puerto 9003
 EXPOSE 9003

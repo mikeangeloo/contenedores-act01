@@ -37,6 +37,7 @@ COPY ./project /var/www/html
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Establecemos permisos
+USER root
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
@@ -47,5 +48,4 @@ EXPOSE 80
 RUN a2enmod rewrite
 
 # Definir el script de entrada por defecto
-USER www-data
 ENTRYPOINT ["sh", "/var/www/html/commands/post-commands.sh"]

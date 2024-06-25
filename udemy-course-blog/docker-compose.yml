@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: mikeangeloo/laravel-blog-demo:v1
+    image: mikeangeloo/laravel-blog:v1.0.0
     container_name: laravel_app
     ports:
       - "9004:80"
